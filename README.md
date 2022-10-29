@@ -1,3 +1,3 @@
 # Jo-Joi
 
-`Joi` is complex, but use `Jo-Joi` is joyful!
+`Joi` is complex, but `Jo-Joi` is joyful!
