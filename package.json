@@ -1,0 +1,22 @@
+{
+  "name": "jojoi",
+  "version": "1.0.0",
+  "description": "Joi is complex, but jojoi is joyful!",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Realzzz1874/jojoi.git"
+  },
+  "keywords": [
+    "joi"
+  ],
+  "author": "https://github.com/Realzzz1874",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Realzzz1874/jojoi/issues"
+  },
+  "homepage": "https://github.com/Realzzz1874/jojoi#readme"
+}
