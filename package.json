@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "Joi is complex, but jojoi is joyful!",
   "main": "index.js",
+  "types": "index.d.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
