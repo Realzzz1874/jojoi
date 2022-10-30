@@ -13,10 +13,14 @@
   "keywords": [
     "joi"
   ],
-  "author": "https://github.com/Realzzz1874",
+  "author": "Realzzz1874",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/Realzzz1874/jojoi/issues"
   },
-  "homepage": "https://github.com/Realzzz1874/jojoi#readme"
+  "homepage": "https://github.com/Realzzz1874/jojoi#readme",
+  "dependencies": {
+    "joi": "^17.6.4",
+    "safe-regex": "^2.1.1"
+  }
 }
