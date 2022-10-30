@@ -38,14 +38,10 @@ function validate(schema, param, options) {
 /**
  * @method requiredAndNotEmpty
  * @param {string} param -- 要检验的参数值
- * @description The string is mandatory and not empty 字符串必填且非空
+ * @description 字符串必填 & 非空
  */
 exports.requiredAndNotEmpty = function requiredAndNotEmpty(...args) {
   let [param, options] = args;
   checkCommon(options);
-  return validate(
-    joiSchema.requireAndNotEmptyForStrSchema(param),
-    param,
-    options
-  );
+  return validate(joiSchema.requiredAndNotEmpty(param), param, options);
 };

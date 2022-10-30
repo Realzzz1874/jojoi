@@ -44,7 +44,7 @@ const idReg =
 
 /**
  * @method requiredAndNotEmpty
- * @description The string is mandatory and not empty 字符串必填且非空
+ * @description 字符串必填 & 非空
  * @returns {object}
  */
 exports.requiredAndNotEmpty = function requiredAndNotEmpty(...args) {
