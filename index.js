@@ -45,3 +45,14 @@ exports.requiredAndNotEmpty = function requiredAndNotEmpty(...args) {
   checkCommon(options);
   return validate(joiSchema.requiredAndNotEmpty(param), param, options);
 };
+
+/**
+ * @method requiredAndCouldEmpty
+ * @param {string} param -- 要检验的参数值
+ * @description 字符串必填 & 可以为空
+ */
+exports.requiredAndCouldEmpty = function requiredAndCouldEmpty(...args) {
+  let [param, options] = args;
+  checkCommon(options);
+  return validate(joiSchema.requiredAndCouldEmpty(), param, options);
+};

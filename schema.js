@@ -52,13 +52,11 @@ exports.requiredAndNotEmpty = function requiredAndNotEmpty(...args) {
 };
 
 /**
- * @method requireAndIsEmptyForStrSchema
- * @description The string must be empty 字符串必填可以为空
+ * @method requiredAndCouldEmpty
+ * @description 字符串必填 & 可以为空
  * @returns {object}
  */
-exports.requireAndIsEmptyForStrSchema = function requireAndIsEmptyForStrSchema(
-  ...args
-) {
+exports.requiredAndCouldEmpty = function requiredAndCouldEmpty(...args) {
   return string.trim().required().allow("");
 };
 
