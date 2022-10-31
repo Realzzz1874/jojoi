@@ -311,8 +311,8 @@ function checkPattern(options) {
 }
 
 /**
- * @method requirePhoneSchema
- * @description 必填且合法电话号码
+ * @method requiredPhone
+ * @description 必填 & 合法电话号码
  *
  * options 可以不填，可以为{} ,但是填了options的 key 就必须填对key值，不然忽略。如果key值填对了，
  * 但是key对应的value 值不对，则报错提示。
@@ -323,7 +323,7 @@ function checkPattern(options) {
  * requirePhone(param )
  * @returns {object}
  */
-exports.requirePhoneSchema = function requirePhoneSchema(...args) {
+exports.requiredPhone = function requiredPhone(...args) {
   let [options] = args;
   let reg = phoneReg;
   if (!options) return string.trim().required().regex(reg);

@@ -5,7 +5,7 @@ const { getType } = require("./util.js");
 /**
  * @description 获取提示信息
  */
-function getMsgTip(param) {
+function formatMsg(param) {
   return `The type of the argument passed in is [${getType(
     param
   )}], Please check the value in the "_original" field.`;
@@ -20,7 +20,7 @@ function validate(schema, param, options) {
     convert: false,
   });
   if (error) {
-    let message = `${error.message}, ${getMsgTip(param)}`;
+    let message = `${error.message}, ${formatMsg(param)}`;
     error.details[0].message = message;
     error.message = message;
     if (options && options["error"]) {
@@ -34,6 +34,17 @@ function validate(schema, param, options) {
     return true;
   }
 }
+
+// -------------------------------------------
+
+/**
+ * @description [约定]
+ * - required: 必填
+ * - notEmpty: 非空
+ * - couldEmpty: 可以空
+ */
+
+// -------------------------------------------
 
 /**
  * @method requiredAndNotEmpty
@@ -55,4 +66,15 @@ exports.requiredAndCouldEmpty = function requiredAndCouldEmpty(...args) {
   let [param, options] = args;
   checkCommon(options);
   return validate(joiSchema.requiredAndCouldEmpty(), param, options);
+};
+
+/**
+ * @method requiredPhone
+ * @param {string} param -- 要检验的参数值
+ * @description 必填 & 合法电话号码
+ */
+exports.requiredPhone = function requiredPhone(...args) {
+  let [param, options] = args;
+  checkCommon(options);
+  return validate(joiSchema.requiredPhone(options), param, options);
 };
