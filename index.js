@@ -48,7 +48,7 @@ function validate(schema, param, options) {
 
 /**
  * @method requiredAndNotEmpty
- * @param {string} param -- 要检验的参数值
+ * @param {string}
  * @description 字符串必填 & 非空
  */
 exports.requiredAndNotEmpty = function requiredAndNotEmpty(...args) {
@@ -59,7 +59,7 @@ exports.requiredAndNotEmpty = function requiredAndNotEmpty(...args) {
 
 /**
  * @method requiredAndCouldEmpty
- * @param {string} param -- 要检验的参数值
+ * @param {string}
  * @description 字符串必填 & 可以为空
  */
 exports.requiredAndCouldEmpty = function requiredAndCouldEmpty(...args) {
@@ -70,11 +70,22 @@ exports.requiredAndCouldEmpty = function requiredAndCouldEmpty(...args) {
 
 /**
  * @method requiredPhone
- * @param {string} param -- 要检验的参数值
+ * @param {string}
  * @description 必填 & 合法电话号码
  */
 exports.requiredPhone = function requiredPhone(...args) {
   let [param, options] = args;
   checkCommon(options);
   return validate(joiSchema.requiredPhone(options), param, options);
+};
+
+/**
+ * @method requiredNumber
+ * @param {string}
+ * @description 必填 & 数字
+ */
+exports.requiredNumber = function requiredNumber(...args) {
+  let [param, options] = args;
+  checkCommon(options);
+  return validate(joiSchema.requiredNumber(param, options), param, options);
 };

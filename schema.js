@@ -109,11 +109,11 @@ exports.minSchema = function minSchema(...args) {
 };
 
 /**
- * @method requireForNumSchema
- * @description 必填数字
+ * @method requiredNumber
+ * @description 必填 & 数字
  * @returns {object}
  */
-exports.requireForNumSchema = function requireForNumSchema(...args) {
+exports.requiredNumber = function requiredNumber(...args) {
   let [param, options] = args;
   return number.required();
 };
