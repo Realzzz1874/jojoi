@@ -342,11 +342,11 @@ exports.requiredPhone = function requiredPhone(...args) {
 };
 
 /**
- * @method requireEmailSchema
- * @description 必填且合法邮箱
+ * @method requiredEmail
+ * @description 必填 & 邮箱
  * @returns {object}
  */
-exports.requireEmailSchema = function requireEmailSchema(...args) {
+exports.requiredEmail = function requiredEmail(...args) {
   let [options] = args;
   if (!options) return string.trim().required().email();
   if (options.hasOwnProperty("pattern")) {
@@ -357,12 +357,12 @@ exports.requireEmailSchema = function requireEmailSchema(...args) {
 };
 
 /**
- * @method requireIDSchema
- * @description 必填且合法身份证
+ * @method requiredID
+ * @description 必填 & 身份证
  * default 1/2代
  * @returns {object}
  */
-exports.requireIDSchema = function requireIDSchema(...args) {
+exports.requiredID = function requiredID(...args) {
   let [options] = args;
   let reg = idReg;
   if (!options) return string.trim().required().regex(reg);
@@ -371,7 +371,6 @@ exports.requireIDSchema = function requireIDSchema(...args) {
     return checkPattern(options);
   }
   if (options.hasOwnProperty("generation")) {
-    // if( !generation ) throw new Error("options.generation cannot be empty!");
     if (!["first", "second"].includes(generation))
       throw new Error("Options.generation is one of 'first' and 'second'!");
     if (generation == "first") reg = firstIdReg;
@@ -381,18 +380,17 @@ exports.requireIDSchema = function requireIDSchema(...args) {
 };
 
 /**
- * @method requireIPSchema
- * @description 必填且合法IP
+ * @method requiredIP
+ * @description 必填 & IP
  * default ipv4/ipv6
  * @returns {object}
  */
-exports.requireIPSchema = function requireIPSchema(...args) {
+exports.requiredIP = function requiredIP(...args) {
   let [options] = args;
   let joiVersion = ["ipv4", "ipv6"];
   if (!options) return string.trim().required().ip({ version: joiVersion });
   let { version } = options;
   if (options.hasOwnProperty("version")) {
-    // if( !version ) throw new Error("options.version cannot be empty!");
     if (!joiVersion.includes(version))
       throw new Error("Options.version is one of 'ipv4' and 'ipv6'!");
     joiVersion = [version];

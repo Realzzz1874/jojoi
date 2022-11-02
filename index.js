@@ -35,6 +35,16 @@ function validate(schema, param, options) {
   }
 }
 
+function checkOptions(options) {
+  if (isEmpty(options)) return;
+  if (!isObject(options)) throw new TypeError("options must be an object!");
+  if (Object.keys(options).length == 0) return;
+  if (options.hasOwnProperty("error")) {
+    if (!(options.error instanceof Error))
+      throw new TypeError("options.error must be an Error!");
+  }
+}
+
 // -------------------------------------------
 
 /**
@@ -53,7 +63,7 @@ function validate(schema, param, options) {
  */
 exports.requiredAndNotEmpty = function requiredAndNotEmpty(...args) {
   let [param, options] = args;
-  checkCommon(options);
+  checkOptions(options);
   return validate(joiSchema.requiredAndNotEmpty(param), param, options);
 };
 
@@ -64,7 +74,7 @@ exports.requiredAndNotEmpty = function requiredAndNotEmpty(...args) {
  */
 exports.requiredAndCouldEmpty = function requiredAndCouldEmpty(...args) {
   let [param, options] = args;
-  checkCommon(options);
+  checkOptions(options);
   return validate(joiSchema.requiredAndCouldEmpty(), param, options);
 };
 
@@ -75,7 +85,7 @@ exports.requiredAndCouldEmpty = function requiredAndCouldEmpty(...args) {
  */
 exports.requiredPhone = function requiredPhone(...args) {
   let [param, options] = args;
-  checkCommon(options);
+  checkOptions(options);
   return validate(joiSchema.requiredPhone(options), param, options);
 };
 
@@ -86,6 +96,39 @@ exports.requiredPhone = function requiredPhone(...args) {
  */
 exports.requiredNumber = function requiredNumber(...args) {
   let [param, options] = args;
-  checkCommon(options);
+  checkOptions(options);
   return validate(joiSchema.requiredNumber(param, options), param, options);
+};
+
+/**
+ * @method requiredEmail
+ * @param {string}
+ * @description 必填 & 邮箱
+ */
+exports.requiredEmail = function requiredEmail(...args) {
+  let [param, options] = args;
+  checkOptions(options);
+  return validate(joiSchema.requiredEmail(options), param, options);
+};
+
+/**
+ * @method requiredID
+ * @param {string}
+ * @description 必填 & 身份证
+ */
+exports.requiredID = function requiredID(...args) {
+  let [param, options] = args;
+  checkOptions(options);
+  return validate(joiSchema.requiredID(options), param, options);
+};
+
+/**
+ * @method requiredIP
+ * @param {string}
+ * @description 必填 & IP
+ */
+exports.requiredIP = function requiredIP(...args) {
+  let [param, options] = args;
+  checkOptions(options);
+  return validate(joiSchema.requiredIP(options), param, options);
 };
