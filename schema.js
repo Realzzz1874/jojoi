@@ -98,11 +98,11 @@ exports.max = function max(...args) {
 };
 
 /**
- * @method minSchema
- * @description length >= max
+ * @method min
+ * @description min length
  * @returns {object}
  */
-exports.minSchema = function minSchema(...args) {
+exports.min = function min(...args) {
   let [param, limit, options] = args;
   if (limit !== 0 && !limit) throw Error(`limit is not passed!`);
   return string.trim().required().min(limit);

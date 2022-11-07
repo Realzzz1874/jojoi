@@ -155,3 +155,15 @@ exports.max = function max(...args) {
   checkCommon(options);
   return validate(joiSchema.max(param, limit, options), param, options);
 };
+
+/**
+ * @method min
+ * @param {string}
+ * @param {integer[]} limit -- 长度
+ * @description 必填 & 字符串最小长度
+ */
+exports.min = function min(...args) {
+  let [param, limit, options] = args;
+  checkCommon(options);
+  return validate(joiSchema.min(param, limit, options), param, options);
+};
