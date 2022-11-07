@@ -135,8 +135,8 @@ exports.requiredIP = function requiredIP(...args) {
 
 /**
  * @method requiredUrl
- * @param {string} param -- 要检验的参数值
- * @description 必填且合法URL
+ * @param {string}
+ * @description 必填 & Url
  */
 exports.requiredUrl = function requiredUrl(...args) {
   let [param, options] = args;
