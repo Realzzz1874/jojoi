@@ -87,11 +87,11 @@ exports.lengthSchema = function lengthSchema(...args) {
 };
 
 /**
- * @method maxSchema
- * @description length <= max
+ * @method max
+ * @description max length
  * @returns {object}
  */
-exports.maxSchema = function maxSchema(...args) {
+exports.max = function max(...args) {
   let [param, limit, options] = args;
   if (limit !== 0 && !limit) throw Error(`limit is not passed!`);
   return string.trim().required().max(limit);

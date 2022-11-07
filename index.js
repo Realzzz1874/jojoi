@@ -143,3 +143,15 @@ exports.requiredUrl = function requiredUrl(...args) {
   checkCommon(options);
   return validate(joiSchema.requiredUrl(options), param, options);
 };
+
+/**
+ * @method max
+ * @param {string}
+ * @param {integer[]} limit -- 长度
+ * @description 必填 & 字符串最大长度
+ */
+exports.max = function max(...args) {
+  let [param, limit, options] = args;
+  checkCommon(options);
+  return validate(joiSchema.max(param, limit, options), param, options);
+};
