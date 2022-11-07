@@ -132,3 +132,14 @@ exports.requiredIP = function requiredIP(...args) {
   checkOptions(options);
   return validate(joiSchema.requiredIP(options), param, options);
 };
+
+/**
+ * @method requiredUrl
+ * @param {string} param -- 要检验的参数值
+ * @description 必填且合法URL
+ */
+exports.requiredUrl = function requiredUrl(...args) {
+  let [param, options] = args;
+  checkCommon(options);
+  return validate(joiSchema.requiredUrl(options), param, options);
+};

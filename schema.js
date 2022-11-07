@@ -421,11 +421,11 @@ exports.nameSchema = function nameSchema(...args) {
 };
 
 /**
- * @method requireUrlSchema
- * @description 必填且合法Url
+ * @method requiredUrl
+ * @description 必填 & Url
  * @returns {object}
  */
-exports.requireUrlSchema = function requireUrlSchema(...args) {
+exports.requiredUrl = function requiredUrl(...args) {
   let [options] = args;
   if (!options) return string.trim().required().uri();
   if (options.hasOwnProperty("pattern")) {
