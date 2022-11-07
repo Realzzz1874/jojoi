@@ -43,20 +43,20 @@ const idReg =
   /^\d{6}((((((19|20)\d{2})(0[13-9]|1[012])(0[1-9]|[12]\d|30))|(((19|20)\d{2})(0[13578]|1[02])31)|((19|20)\d{2})02(0[1-9]|1\d|2[0-8])|((((19|20)([13579][26]|[2468][048]|0[48]))|(2000))0229))\d{3})|((((\d{2})(0[13-9]|1[012])(0[1-9]|[12]\d|30))|((\d{2})(0[13578]|1[02])31)|((\d{2})02(0[1-9]|1\d|2[0-8]))|(([13579][26]|[2468][048]|0[048])0229))\d{2}))(\d|X|x)$/;
 
 /**
- * @method requiredAndNotEmpty
+ * @method requiredNotEmpty
  * @description 字符串必填 & 非空
  * @returns {object}
  */
-exports.requiredAndNotEmpty = function requiredAndNotEmpty(...args) {
+exports.requiredNotEmpty = function requiredNotEmpty(...args) {
   return string.trim().required();
 };
 
 /**
- * @method requiredAndCouldEmpty
+ * @method requiredCouldEmpty
  * @description 字符串必填 & 可以为空
  * @returns {object}
  */
-exports.requiredAndCouldEmpty = function requiredAndCouldEmpty(...args) {
+exports.requiredCouldEmpty = function requiredCouldEmpty(...args) {
   return string.trim().required().allow("");
 };
 
@@ -273,15 +273,14 @@ exports.requireAndIsEmptyForArrSchema = function requireAndIsEmptyForArrSchema(
 };
 
 /**
- * @method requireAndNotEmptyForObjSchema
- * @description 必填对象且非空
+ * @method requiredNotEmptyObj
+ * @description 必填 & 非空 & 对象
  * @returns {object}
  */
-exports.requireAndNotEmptyForObjSchema =
-  function requireAndNotEmptyForObjSchema(...args) {
-    let [options] = args;
-    return object.required().min(1);
-  };
+exports.requiredNotEmptyObj = function requiredNotEmptyObj(...args) {
+  let [options] = args;
+  return object.required().min(1);
+};
 
 /**
  * @method requireAndIsEmptyForObjSchema

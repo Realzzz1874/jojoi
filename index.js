@@ -57,25 +57,25 @@ function checkOptions(options) {
 // -------------------------------------------
 
 /**
- * @method requiredAndNotEmpty
+ * @method requiredNotEmpty
  * @param {string}
  * @description 字符串必填 & 非空
  */
-exports.requiredAndNotEmpty = function requiredAndNotEmpty(...args) {
+exports.requiredNotEmpty = function requiredNotEmpty(...args) {
   let [param, options] = args;
   checkOptions(options);
-  return validate(joiSchema.requiredAndNotEmpty(param), param, options);
+  return validate(joiSchema.requiredNotEmpty(param), param, options);
 };
 
 /**
- * @method requiredAndCouldEmpty
+ * @method requiredCouldEmpty
  * @param {string}
  * @description 字符串必填 & 可以为空
  */
-exports.requiredAndCouldEmpty = function requiredAndCouldEmpty(...args) {
+exports.requiredCouldEmpty = function requiredCouldEmpty(...args) {
   let [param, options] = args;
   checkOptions(options);
-  return validate(joiSchema.requiredAndCouldEmpty(), param, options);
+  return validate(joiSchema.requiredCouldEmpty(), param, options);
 };
 
 /**
@@ -166,4 +166,19 @@ exports.min = function min(...args) {
   let [param, limit, options] = args;
   checkCommon(options);
   return validate(joiSchema.min(param, limit, options), param, options);
+};
+
+/**
+ * @method requiredNotEmptyObj
+ * @param {object} param
+ * @description 必填 & 非空 & 对象
+ */
+exports.requiredNotEmptyObj = function requiredNotEmptyObj(...args) {
+  let [param, options] = args;
+  checkCommon(options);
+  return validate(
+    joiSchema.requiredNotEmptyObj(param, options),
+    param,
+    options
+  );
 };
