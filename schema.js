@@ -283,13 +283,11 @@ exports.requiredNotEmptyObj = function requiredNotEmptyObj(...args) {
 };
 
 /**
- * @method requireAndIsEmptyForObjSchema
- * @description 必填对象可以为空
- * @returns {object}
+ * @method requiredCouldEmptyObj
+ * @param {object} param
+ * @description 必填 & 可以空 & 对象
  */
-exports.requireAndIsEmptyForObjSchema = function requireAndIsEmptyForObjSchema(
-  ...args
-) {
+exports.requiredCouldEmptyObj = function requiredCouldEmptyObj(...args) {
   let [options] = args;
   return object.required();
 };

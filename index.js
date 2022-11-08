@@ -70,7 +70,7 @@ exports.requiredNotEmpty = function requiredNotEmpty(...args) {
 /**
  * @method requiredCouldEmpty
  * @param {string}
- * @description 字符串必填 & 可以为空
+ * @description 字符串必填 & 可以空
  */
 exports.requiredCouldEmpty = function requiredCouldEmpty(...args) {
   let [param, options] = args;
@@ -178,6 +178,21 @@ exports.requiredNotEmptyObj = function requiredNotEmptyObj(...args) {
   checkCommon(options);
   return validate(
     joiSchema.requiredNotEmptyObj(param, options),
+    param,
+    options
+  );
+};
+
+/**
+ * @method requiredCouldEmptyObj
+ * @param {object} param
+ * @description 必填 & 可以空 & 对象
+ */
+exports.requiredCouldEmptyObj = function requiredCouldEmptyObj(...args) {
+  let [param, options] = args;
+  checkCommon(options);
+  return validate(
+    joiSchema.requiredCouldEmptyObj(param, options),
     param,
     options
   );
