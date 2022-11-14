@@ -197,3 +197,14 @@ exports.requiredCouldEmptyObj = function requiredCouldEmptyObj(...args) {
     options
   );
 };
+
+/**
+ * @method requiredInt
+ * @param {int} param
+ * @description 必填 & 整数
+ */
+exports.requiredInt = function requiredInt(...args) {
+  let [param, options] = args;
+  checkCommon(options);
+  return validate(joiSchema.requiredInt(options), param, options);
+};

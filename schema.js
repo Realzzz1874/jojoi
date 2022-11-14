@@ -230,11 +230,11 @@ exports.requireAndPrecisionSchema = function requireAndPrecisionSchema(
 };
 
 /**
- * @method requireForIntSchema
- * @description 必填数字枚举
+ * @method requiredInt
+ * @description
  * @returns {object}
  */
-exports.requireForIntSchema = function requireForIntSchema(...args) {
+exports.requiredInt = function requiredInt(...args) {
   let [options] = args;
   return number.required().integer();
 };
