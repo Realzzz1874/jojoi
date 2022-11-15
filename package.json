@@ -1,6 +1,6 @@
 {
   "name": "jojoi",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Joi is complex, but jojoi is joyful!",
   "main": "index.js",
   "types": "index.d.ts",
