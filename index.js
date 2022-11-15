@@ -91,7 +91,7 @@ exports.requiredPhone = function requiredPhone(...args) {
 
 /**
  * @method requiredNumber
- * @param {string}
+ * @param {number}
  * @description 必填 & 数字
  */
 exports.requiredNumber = function requiredNumber(...args) {
@@ -217,5 +217,5 @@ exports.requiredInt = function requiredInt(...args) {
 exports.requiredBool = function requiredBool(...args) {
   let [param, options] = args;
   checkCommon(options);
-  return validate(joiSchema.requireForBoolSchema(options), param, options);
+  return validate(joiSchema.requiredBool(options), param, options);
 };
