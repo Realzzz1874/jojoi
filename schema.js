@@ -76,17 +76,6 @@ exports.requireAndEnumForStrSchema = function requireAndEnumForStrSchema(
 };
 
 /**
- * @method lengthSchema
- * @description 特定字符串长度
- * @returns {object}
- */
-exports.lengthSchema = function lengthSchema(...args) {
-  let [param, limit, options] = args;
-  if (limit !== 0 && !limit) throw Error(`limit is not passed!`);
-  return string.trim().required().length(limit);
-};
-
-/**
  * @method max
  * @description max length
  * @returns {object}
@@ -119,117 +108,6 @@ exports.requiredNumber = function requiredNumber(...args) {
 };
 
 /**
- * @method requireAndEnumForNumSchema
- * @description 必填数字枚举
- * @returns {object}
- */
-exports.requireAndEnumForNumSchema = function requireAndEnumForNumSchema(
-  ...args
-) {
-  let [enumArr, options] = args;
-  return number.required().valid(...enumArr);
-};
-
-/**
- * @method requireForRangeSchema
- * @description 必填且 整数 > X
- * @returns {object}
- */
-exports.requireForRangeSchema = function requireForRangeSchema(...args) {
-  let [param, op, limit, options, type] = args;
-  const opOneList = ["gt", "gte", "lt", "lte"];
-
-  const opTwoList = [
-    "left-close-right-close",
-    "left-close-right-open",
-    "left-open-right-open",
-    "left-open-right-close",
-    "l-c-r-c",
-    "l-c-r-o",
-    "l-o-r-o",
-    "l-o-r-c",
-  ];
-
-  const opList = opOneList.concat(opTwoList);
-  if (isEmpty(op)) throw new Error("op is not passed!");
-  if (!opList.includes(op)) throw new Error(`op 必须是这些值 ${opList.join()}`);
-
-  let start,
-    end,
-    schema = number.required();
-  if (opOneList.includes(op)) {
-    if (isEmpty(limit)) throw new Error("limit is not passed!");
-  } else {
-    if (!isArray(limit) || limit.length != 2)
-      throw new Error("limit must be an array of length 2!");
-    (start = limit[0]), (end = limit[1]);
-    if (isComparableNumber(start) && isComparableNumber(end)) {
-      if (start >= end) {
-        throw new Error(
-          "The second value of the limit array must be greater than the first value!"
-        );
-      }
-    }
-  }
-
-  if (op == "l-c-r-c") op = "left-close-right-close";
-  if (op == "l-c-r-o") op = "left-close-right-open";
-  if (op == "l-o-r-c") op = "left-open-right-close";
-  if (op == "l-o-r-o") op = "left-open-right-open";
-
-  if (type == "integer") schema = schema.integer();
-
-  switch (op) {
-    // X<P
-    case "gt":
-      schema = schema.greater(limit);
-      break;
-    // X<=P
-    case "gte":
-      schema = schema.min(limit);
-      break;
-    // P<Y
-    case "lt":
-      schema = schema.less(limit);
-      break;
-    // X<=P<=Y
-    case "lte":
-      schema = schema.max(limit);
-      break;
-    // X<P<Y
-    case "left-open-right-open":
-      schema = schema.greater(start).less(end);
-      break;
-    // X<P<=Y
-    case "left-open-right-close":
-      schema = schema.greater(start).max(end);
-      break;
-    // X<=P<Y
-    case "left-close-right-open":
-      schema = schema.min(start).less(end);
-      break;
-    // X<=P<=Y
-    case "left-close-right-close":
-      schema = schema.min(start).max(end);
-      break;
-  }
-  return schema;
-};
-
-/**
- * @method requireAndPrecisionSchema
- * @description 必填N位小数
- * @returns {object}
- */
-exports.requireAndPrecisionSchema = function requireAndPrecisionSchema(
-  ...args
-) {
-  let [param, limit, options] = args;
-  if (limit !== 0 && !limit) throw Error(`limit is not passed!`);
-  return number.required().precision(limit);
-};
-
-/**
  * @method requiredInt
  * @description
  * @returns {object}
@@ -240,36 +118,13 @@ exports.requiredInt = function requiredInt(...args) {
 };
 
 /**
- * @method requireForBoolSchema
- * @description 必填布尔
+ * @method requiredBool
+ * @description 必填 & 布尔
  * @returns {object}
  */
-exports.requireForBoolSchema = function requireForBoolSchema(...args) {
+exports.requiredBool = function requiredBool(...args) {
   let [options] = args;
   return boolean.required();
-};
-
-/**
- * @method requireAndNotEmptyForArrSchema
- * @description 必填数组且非空
- * @returns {object}
- */
-exports.requireAndNotEmptyForArrSchema =
-  function requireAndNotEmptyForArrSchema(...args) {
-    let [options] = args;
-    return array.required().min(1);
-  };
-
-/**
- * @method requireAndIsEmptyForArrSchema
- * @description 必填数组可以为空
- * @returns {object}
- */
-exports.requireAndIsEmptyForArrSchema = function requireAndIsEmptyForArrSchema(
-  ...args
-) {
-  let [options] = args;
-  return array.required();
 };
 
 /**
@@ -310,11 +165,6 @@ function checkPattern(options) {
 /**
  * @method requiredPhone
  * @description 必填 & 合法电话号码
- *
- * options 可以不填，可以为{} ,但是填了options的 key 就必须填对key值，不然忽略。如果key值填对了，
- * 但是key对应的value 值不对，则报错提示。
- * options.pattern 优先级最高，设置了pattern ，则会忽略其他参数，使用用户定义的pattern
- *
  * requirePhone(param , {'pattern' : xxxx})
  * requirePhone(param , {'mode' : 'strict' })
  * requirePhone(param )
@@ -393,28 +243,6 @@ exports.requiredIP = function requiredIP(...args) {
     joiVersion = [version];
   }
   return string.trim().required().ip({ version: joiVersion });
-};
-
-/**
- * @method nameSchema
- * @description 中文姓名
- * @returns {object}
- */
-exports.nameSchema = function nameSchema(...args) {
-  let [param, options] = args;
-  if (!options)
-    return string
-      .trim()
-      .required()
-      .pattern(/^(?:[\u4e00-\u9fa5·]{2,16})$/);
-  if (options.hasOwnProperty("pattern")) {
-    return checkPattern(options);
-  } else {
-    return string
-      .trim()
-      .required()
-      .pattern(/^(?:[\u4e00-\u9fa5·]{2,16})$/);
-  }
 };
 
 /**

@@ -208,3 +208,14 @@ exports.requiredInt = function requiredInt(...args) {
   checkCommon(options);
   return validate(joiSchema.requiredInt(options), param, options);
 };
+
+/**
+ * @method requiredBool
+ * @param {boolean}
+ * @description 必填 & 布尔
+ */
+exports.requiredBool = function requiredBool(...args) {
+  let [param, options] = args;
+  checkCommon(options);
+  return validate(joiSchema.requireForBoolSchema(options), param, options);
+};
